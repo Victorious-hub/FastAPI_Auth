@@ -10,3 +10,15 @@ class UserSchema(BaseModel):
     password: str
 
 
+class TitleSchema(BaseModel):
+   id: int
+   title: str
+
+class LoginSchema(BaseModel):
+   id: int
+   title: str   
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str

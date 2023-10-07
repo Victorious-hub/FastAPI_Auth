@@ -15,7 +15,7 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 # add your model's MetaData object here
-import src.database
+from database import Base
 from src.auth.models import *
 target_metadata = Base.metadata
 
