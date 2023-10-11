@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
 
 const Register = () => {
   
@@ -27,15 +27,15 @@ const Register = () => {
       .then(response => {
         if (response.status === 201) {
           console.log('Title added successfully!');
-          // Дополнительные действия при успешном сохранении
+
         } else {
           console.log('Error:', response.statusText);
-          // Дополнительная обработка ошибки
+
         }
       })
       .catch(error => {
         console.error('Error:', error);
-        // Обработка ошибок
+
       });
   };
 

@@ -25,7 +25,9 @@ const LoginForm = () => {
         const data = await response.json();
         const token = data.access_token;
         localStorage.setItem('token', token);
-        console.log(data.access_token)
+        console.log(data.access_token);
+
+        window.location.href = '/profile';
       } else {
         setError('Invalid username or password');
       }

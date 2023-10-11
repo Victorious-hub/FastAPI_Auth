@@ -29,6 +29,8 @@ bcrypt = "*"
 jose = "*"
 jwt = "*"
 python-jose = "*"
+fastapi-users = {extras = ["sqlalchemy"], version = "*"}
+python-multipart = "*"
 
 [dev-packages]
 

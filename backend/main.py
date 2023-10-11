@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from fastapi import FastAPI
-from fastapi.security import
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from src.auth import models,router
