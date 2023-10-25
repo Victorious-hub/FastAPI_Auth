@@ -31,6 +31,8 @@ jwt = "*"
 python-jose = "*"
 fastapi-users = {extras = ["sqlalchemy"], version = "*"}
 python-multipart = "*"
+loguru = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

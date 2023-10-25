@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import axios from 'axios';
 import Register from './components/Register';
 import UserList from './components/UserList';
 import LoginForm from './components/LoginForm';
