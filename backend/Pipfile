@@ -33,6 +33,7 @@ fastapi-users = {extras = ["sqlalchemy"], version = "*"}
 python-multipart = "*"
 loguru = "*"
 python-dotenv = "*"
+sklearn = "*"
 
 [dev-packages]
 

@@ -2,12 +2,14 @@ from fastapi import FastAPI
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-from src.auth import models,router
+from src.auth import models,router as auth_router
+from src.tasks import router as tasks_router
 from database import engine
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
-app.include_router(router.router)
+app.include_router(auth_router.router)
+app.include_router(tasks_router.router)
 
 origins = [
     "http://localhost:3000",

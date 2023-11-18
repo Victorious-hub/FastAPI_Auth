@@ -4,7 +4,7 @@ from sqlalchemy import (
 )
 
 from sqlalchemy.sql.schema import Column
-
+from sqlalchemy.orm import relationship
 from database import Base
 
 
@@ -13,14 +13,10 @@ class Users(Base):
 
     id = Column(Integer, primary_key=True)
     username = Column(String, nullable=False)
-    email = Column(String, nullable=False)
+    email = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
 
 
-class Title(Base):
-    __tablename__ = "titles"
-
-    id = Column(Integer, primary_key=True)
-    title = Column(String, nullable=False)
+    task_owner = relationship("Branch", back_populates="owner")
 
     

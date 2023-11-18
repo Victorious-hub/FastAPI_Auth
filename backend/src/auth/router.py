@@ -17,11 +17,11 @@ SECRET_KEY = '38759723759aqryq9yrqrhq09rq0wrq082104y120384'
 ALGORITHM = 'HS256'
 
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
-oauth2_bearer = OAuth2PasswordBearer(tokenUrl='user/token')
+oauth2_bearer = OAuth2PasswordBearer(tokenUrl='/api/users/login')
 
 router = APIRouter(
-    prefix='/user',
-    tags=['user']
+    prefix='/api/users',
+    tags=['auth']
 )
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -47,7 +47,7 @@ async def user_register(user: UserSchema, db: Session = Depends(get_db)):
     db.commit()
 
 
-@router.get("/users", status_code=status.HTTP_200_OK, response_model=None)
+@router.get("/get_users", status_code=status.HTTP_200_OK, response_model=None)
 async def user_register(db: Session = Depends(get_db)):
     get_users = db.query(Users).all()
     return get_users
@@ -65,13 +65,15 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
+
 class Hash():
     def bcrypt(password: str):
         return pwd_context.hash(password)
     def verify(hashed_password,plain_password):
         return pwd_context.verify(plain_password,hashed_password)
+    
 
-@router.post('/token',tags=['authentication'],status_code=status.HTTP_202_ACCEPTED,response_model = Token)
+@router.post('/login',status_code=status.HTTP_202_ACCEPTED,response_model = Token)
 def login(request:OAuth2PasswordRequestForm = Depends(),db: Session = Depends(get_db)):
     print(request.username)
     user=db.query(Users).filter(Users.username ==request.username).first()
@@ -113,3 +115,8 @@ def get_user_profile(current_user: Users = Depends(get_current_user)):
         email=current_user.email,
         password = current_user.password
     )
+
+@router.get('/profile/{id}',response_model=None)
+def get_user_profile(id:int,db: Session = Depends(get_db)):
+    get_user = db.query(Users).filter(Users.id == id).first()
+    return get_user
